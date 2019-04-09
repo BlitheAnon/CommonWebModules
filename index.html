@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>分页组件</title>
     <style media="screen" type="text/css">
-        body{
+        body {}
 
-        }
-        button{
+        button {
             height: 60px;
             width: 60px;
             border: green solid 1px;
@@ -15,7 +15,7 @@
             margin: 0 10px 0;
         }
 
-        main{
+        main {
             display: flex;
             width: 800px;
             height: 100px;
@@ -25,20 +25,22 @@
             justify-content: center;
         }
 
-        <!-- 设置鼠标点击后效果 -->
-        button:link{
+        < !-- 设置鼠标点击后效果 -->button:link {}
 
-        }
-        button:visited{
+        button:visited {}
 
-        }
-        button:hover{
+        button:hover {
             background-color: green;
             color: #ffffff;
         }
 
-        a:hover{
+        a:hover {
             background-color: green;
+        }
+
+        .clicked{
+            background-color: green;
+            color: #ffffff;
         }
     </style>
 </head>
@@ -55,5 +57,83 @@
         <button type="button" name="button">尾页</button>
     </main>
 </body>
+
+<script type="text/javascript">
+    <!-- 页面加载后运行 -->
+    window.onload=function(){
+        <!-- (Demo1) total: 10，current: 4 -->
+        pagination(10,4)
+        <!-- (Demo2) total: 0，current: 0 -->
+        //pagination(0,0)
+        <!-- (Demo3) total: 3，current: 2 -->
+        //pagination(3,2)
+        <!-- (Demo4) total: 10，current: 2 -->
+        //pagination(10,2)
+        <!-- (Demo5) total: 10，current: 9 -->
+        //pagination(10,9)
+
+        function pagination(total, current) {
+            var main=document.getElementById('jsPagination')
+            //Demo2总页数为0时，隐藏所有
+            if(total===0){
+                main.style.visibility='hidden'
+            }
+            //Demo3总页数小于6页，隐藏首尾页
+            else if(total<6){
+                //取得首尾页button，并隐藏
+                (main.children)[0].style.visibility='hidden';
+                (main.children)[6].style.visibility='hidden';
+
+                //给按钮赋值
+                for(var i=1;i<total+1;i++){
+                    if(i===current){
+                        (main.children)[i].className='clicked'
+                    }
+                    (main.children)[i].innerText=i
+                }
+                //隐藏多余按钮
+                for(var i=5;i>total;i--){
+                    (main.children)[i].style.display='none'
+                }
+            }else{
+                //总数大于5页
+                //Demo4，隐藏首页按钮
+                if(current<4){
+                    (main.children)[0].style.visibility='hidden'
+                    //给按钮赋值
+                    for(var i=1;i<6;i++){
+                        (main.children)[i].innerText=i
+                    }
+                    //给current添加点击样式
+                    (main.children)[current].className='clicked'
+                }else{
+                    //Demo5，隐藏尾页按钮
+                    if(total-current<5){
+                        (main.children)[6].style.visibility='hidden'
+                        //给按钮赋值
+                        for(var i=1;i<6;i++){
+                            if(current===total-4){
+                                (main.children)[i].className='clicked'
+                            }
+                            (main.children)[i].innerText=total-4
+                            total++
+                        }
+                    }else{
+                        //Demo1，全显示
+                        //按钮赋值
+                        for(var i=1;i<6;i++){
+                            (main.children)[i].innerText=current-2
+                            current++
+                        }
+
+                        (main.children)[3].className='clicked'
+
+                    }
+                }
+
+            }
+        }
+    }
+</script>
 
 </html>
