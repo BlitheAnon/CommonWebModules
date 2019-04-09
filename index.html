@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>分页组件</title>
+    <style media="screen" type="text/css">
+        body{
+
+        }
+        button{
+            height: 60px;
+            width: 60px;
+            border: green solid 1px;
+            color: green;
+            font-size: medium;
+            margin: 0 10px 0;
+        }
+
+        main{
+            display: flex;
+            width: 800px;
+            height: 100px;
+            margin: auto;
+            background-color: red;
+            align-items: center;
+            justify-content: center;
+        }
+
+        <!-- 设置鼠标点击后效果 -->
+        button:link{
+
+        }
+        button:visited{
+
+        }
+        button:hover{
+            background-color: green;
+            color: #ffffff;
+        }
+
+        a:hover{
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#">this is test</a>
+    <main id="jsPagination">
+        <button type="button" name="button">首页</button>
+        <button type="button" name="button"></button>
+        <button type="button" name="button"></button>
+        <button type="button" name="button"></button>
+        <button type="button" name="button"></button>
+        <button type="button" name="button"></button>
+        <button type="button" name="button">尾页</button>
+    </main>
+</body>
+
+</html>
