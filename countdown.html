@@ -20,4 +20,110 @@
 
     </body>
 
+    <script>
+        window.onload = function() {
+            //设置计时秒总数
+            //105000 ，01天 05: 10: 00
+            //123456  01天 10: 17: 36
+            //1050
+            //59
+            //1000000 11天 13: 46: 40
+            render(second(1000000))
+            //render(123456)
+
+            //参考
+            // function second(second) {
+            //     var day = 24 * 60 * 60;
+            //     var hour = 60 * 60;
+            //     var min = 60;
+            //     var rest = second;
+            //     var d = Math.floor(second / day);
+            //     rest -= d * day;
+            //     var h = Math.floor(rest / hour);
+            //     rest -= h * hour;
+            //     var m = Math.floor(rest / min);
+            //     rest -= m * min;
+            //     var s = rest;
+            //     return {
+            //         day: d,
+            //         hour: h,
+            //         min: m,
+            //         second: s
+            //     };
+            // }
+            //
+            // function render(data) {
+            //     //console.log(data);
+            //     function checkLen(value) {
+            //         if (value.toString().length == 1)
+            //             value = '0' + value;
+            //         return value;
+            //     }
+            //     var ele = document.getElementById('jsCountdown');
+            //     var child = ele.firstElementChild;
+            //     child.innerText = checkLen(data.day) + '天';
+            //     if (data.day == 0)
+            //         child.className = 'hide';
+            //     child = child.nextElementSibling;
+            //     child.innerText = checkLen(data.hour) + ':';
+            //     child = child.nextElementSibling;
+            //     child.innerText = checkLen(data.min) + ':';
+            //     child = child.nextElementSibling;
+            //     child.innerText = checkLen(data.second) + '';
+            // }
+
+            function second(second) {
+                //秒转换为天，小时，分钟，秒
+                var day = parseInt(second / 3600 / 24);
+                var hour = parseInt((second - (day * 24 * 3600)) / 3600)
+                var minute = parseInt((second - (day * 24 * 3600) - hour * 3600) / 60)
+                var second_ = second - (day * 24 * 3600) - hour * 3600 - minute * 60
+                var resultObj = {
+                    day: day,
+                    hour: hour,
+                    minute: minute,
+                    second: second_
+                }
+                //console.log(resultObj)
+                return resultObj
+            }
+
+            function render(data) {
+                //var data = second(data)
+
+                var main = document.getElementById('jsCountdown');
+                var childArr = main.children;
+                var dayEle = childArr[0];
+                var hourEle = childArr[1];
+                var minEle = childArr[2];
+                var secondEle = childArr[3];
+
+                //判断各value是否为0
+                var day = data.day;
+                var hour = data.hour;
+                var minute = data.minute;
+                var seconds = data.second;
+
+                if (day === 0) {
+                    dayEle.className = 'hide';
+                } else {
+                    dayEle.innerText = format(day) + '天';
+                }
+
+
+                hourEle.innerText = format(hour) + ':';
+                minEle.innerText = format(minute) + ':';
+                secondEle.innerText = format(seconds);
+
+                function format(time) {
+                    return time < 9 ? '0' + time : time;
+                }
+            }
+
+
+
+
+        }
+    </script>
+
     </html>
