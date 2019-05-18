@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>各种居中</title>
+        <style>
+            *{
+                outline: 1px solid grey;
+            }
+            .parentNode1{
+                position: relative;
+                width: 200px;
+                height:100px;
+                background-color: green;
+            }
+
+            .son1{
+                position: absolute;
+                width: 100px;
+                height: 50px;
+                margin: auto;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background-color: red;
+            }
+
+            .parentNode2{
+                display: flex;
+                display: -webkit-flex;
+                width: 200px;
+                height:100px;
+                background-color: blue;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .parentNode3{
+                display: table-cell;
+                width: 200px;
+                height:100px;
+                background-color: red;
+                vertical-align: middle;
+            }
+
+            .son3{
+                margin: auto;
+                width: 100px;
+                background: white;
+            }
+
+            .parentNode4{
+                position: relative;
+                width: 200px;
+                height:100px;
+                background-color: red;
+            }
+
+            .son4{
+                position: absolute;
+                width: 100px;
+                height: 50px;
+                top: 50%;
+                left: 50%;
+                background: white;
+                margin-top: -25px;
+                margin-left: -50px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="parentNode1">
+            <span class="son1">margin auto居中</span>
+        </div>
+
+        <div class="parentNode2" style="">
+            <div class="">flex居中</div>
+        </div>
+
+        <div class="parentNode3" style="">
+            <div class="son3">table-cell居中</div>
+        </div>
+
+        <div class="parentNode4" style="">
+            <div class="son4">margin负值法</div>
+        </div>
+
+    </body>
+</html>
