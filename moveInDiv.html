@@ -1,0 +1,37 @@
+<html !DOCTYPE>
+
+<head>
+    <title>js判断鼠标是否处于元素内</title>
+    <style media="screen">
+        .container {
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+
+        .son1{
+            background: green;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="container" id="test">
+        <div class="son1" id="son1">0
+        </div>
+    </div>
+    <script>
+    var x=0;
+        window.onload = function() {
+            var div = document.getElementById("test");
+            var son1 = document.getElementById("son1");
+            div.onmouseenter = function(event) {
+                son1.innerHTML=x+=1;
+            }
+        }
+    </script>
+</body>
+
+</html>
