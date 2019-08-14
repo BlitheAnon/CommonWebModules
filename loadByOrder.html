@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>顺序载入图片</title>
+</head>
+
+<body>
+    <div class="" id="container">
+
+    </div>
+    <script type="text/javascript">
+        window.onload = function() {
+            let pic_arr = [
+                "https://img1.doubanio.com/view/movie_poster_cover/lpst/public/p2494647817.jpg",
+                "https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2455156816.jpg",
+                "https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2391991284.jpg",
+                "https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2494892274.jpg",
+                "https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2462744662.jpg",
+                "https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2455261804.jpg",
+                "https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2452970761.jpg",
+                "https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2493595992.jpg",
+                "https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2457983084.jpg"
+            ];
+
+            //迭代onload，达到顺序载入图片效果
+            function orderLoad() {
+                let container = document.getElementById('container');
+                let _imglen = pic_arr.length;
+                let i = 0;
+                //3张图,
+                function loadPic(i) {
+                    if (i<_imglen) {
+                        console.log(i);
+                        let img = document.createElement('img');
+                        img.src = pic_arr[i];
+                        container.appendChild(img);
+                        img.onload = function() {
+                            return loadPic(i+1);
+                        }
+                    }
+                }
+
+                loadPic(0);
+            }
+
+            orderLoad();
+        }
+    </script>
+</body>
+
+</html>
