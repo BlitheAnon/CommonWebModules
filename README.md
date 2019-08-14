@@ -5,3 +5,5 @@
 ## 4.texttolink.html 替换链接
 ## 5.todolist.html 待做清单
 ## 6.multicenter.html 垂直水平居中
+## 7.loadByOrder.html 顺序依次载入图片
+## 8.moveInDiv.html 检测鼠标是否移入元素内部
