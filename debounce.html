@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+
+<body>
+    <button type="button" name="button" onclick="multiClick1()">不防抖点击</button>
+    <button type="button" name="button" id="btn">防抖点击</button>
+    <main class="" id="main">
+
+    </main>
+</body>
+
+<script type="text/javascript">
+    //防抖实现
+    const debounce = (fn, delay) => {
+        let timer = null;
+        return (...args) => {
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                fn.apply(this, args);
+            }, delay);
+        };
+    };
+
+    let main = document.getElementById("main");
+
+    //防抖前
+    function multiClick1() {
+        let element = document.createElement('div');
+        element.innerText = "不防抖点击";
+        main.appendChild(element);
+    }
+
+    function debounceFn() {
+        let element = document.createElement('div');
+        element.innerText = "防抖点击";
+        main.appendChild(element);
+    }
+
+    //防抖后
+    let test = document.getElementById('btn');
+    test.addEventListener('click', debounce(debounceFn, 500));
+</script>
+
+</html>
