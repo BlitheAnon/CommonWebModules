@@ -7,3 +7,4 @@
 ## 6.multicenter.html 垂直水平居中
 ## 7.loadByOrder.html 顺序依次载入图片
 ## 8.moveInDiv.html 检测鼠标是否移入元素内部
+## 9.debounce.html 防抖函数demo
