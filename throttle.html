@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>节流函数</title>
+</head>
+
+<body>
+    <button type="button" name="button" onClick="normalClick()">普通按钮</button>
+    <button type="button" name="button" id="throttle-btn">节流按钮</button>
+    <span id="test">测试</span>
+    <main id="main">
+
+    </main>
+
+</body>
+
+<script type="text/javascript">
+    /*
+    原理：规定在一个单位时间内，只能触发一次函数。
+        如果这个单位时间内触发多次函数，只有一次生效。
+    */
+    /*
+    作用：
+    拖拽场景：固定时间内只执行一次，防止超高频次触发位置变动
+    缩放场景：监控浏览器resize
+    动画场景：避免短时间内多次触发动画引起性能问题
+    #
+    */
+    //实现1
+    // const throttle = (fn, delay = 500) => {
+    //     let flag = true;
+    //     return (...args) => {
+    //         if (!flag) return;
+    //         flag = false;
+    //         setTimeout(() => {
+    //             fn.apply(this, args);
+    //             flag = true;
+    //         }, delay);
+    //     }
+    // }
+
+    //实现2
+    const throttle = (fn, delay = 500) => {
+        let timer;
+        return (...args) => {
+            if (!timer) {
+                timer = setTimeout(() => {
+                    timer = null;
+                    fn.apply(this, args);
+                }, delay);
+            }
+        }
+    }
+
+    let main = document.getElementById('main');
+
+    function normalClick() {
+        let element = document.createElement('div');
+        element.innerText = '普通点击';
+        main.appendChild(element);
+    }
+
+    function throttleClick() {
+        let element = document.createElement('div');
+        element.innerText = '节流点击';
+        main.appendChild(element);
+    }
+
+    let btn = document.getElementById('throttle-btn');
+    btn.addEventListener('click', throttle(throttleClick));
+</script>
+
+</html>
